@@ -1,4 +1,8 @@
+using CommunityPortal.Areas.Admin.Models.Services;
+using CommunityPortal.Areas.Admin.Models.ViewModels.Post;
 using CommunityPortal.Models.Data;
+using CommunityPortal.Models.Domains;
+using CommunityPortal.Models.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -28,6 +32,10 @@ namespace CommunityPortal
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<PortalContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IRepository<Post>, PostRepository>();
+
+            services.AddScoped<IService<Post, CreatePostViewModel>, PostService>();
 
             services.AddControllersWithViews();
         }
