@@ -1,0 +1,9 @@
+﻿@model IDictionary<string, List<string>>
+
+@foreach (KeyValuePair<string, List<string>> messages in Model)
+{
+    foreach (string message in messages.Value)
+    {
+        <p class="mb-2">@message</p>
+    }
+}

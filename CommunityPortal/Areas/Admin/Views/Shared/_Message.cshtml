@@ -1,0 +1,9 @@
+﻿@using CommunityPortal.Models.Extensions
+
+@foreach (KeyValuePair<string, List<string>> messages in TempData.Message())
+{
+    foreach (string message in messages.Value)
+    {
+        <p class="mb-2">@message</p>
+    }
+}
