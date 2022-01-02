@@ -4,6 +4,7 @@ using System.Linq;
 using CommunityPortal.Areas.Admin.Models.Services;
 using CommunityPortal.Areas.Admin.Models.ViewModels.Post;
 using CommunityPortal.Models.Domains;
+using CommunityPortal.Models.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommunityPortal.Areas.Admin.Controllers
@@ -83,6 +84,27 @@ namespace CommunityPortal.Areas.Admin.Controllers
 
 
             return View(entry);
+        }
+
+        public IActionResult New()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult New(CreatePostViewModel entry)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(entry);
+            }
+
+            Service.Add(entry);
+
+            TempData.Message("rashin", "Your post saved successfully");
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

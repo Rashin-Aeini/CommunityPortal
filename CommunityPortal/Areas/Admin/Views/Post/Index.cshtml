@@ -8,6 +8,8 @@
     <h1 class="h2">Show all posts</h1>
 </div>
 
+@await Component.InvokeAsync("Message")
+
 <div class="d-flex flex-column mb-2">
     <form asp-area="Admin" asp-controller="Post" asp-action="Index"
           method="get" class="ms-auto">
