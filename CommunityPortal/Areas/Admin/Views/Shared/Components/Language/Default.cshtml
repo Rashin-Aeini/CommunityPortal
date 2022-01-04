@@ -1,0 +1,20 @@
+﻿@model List<string>
+
+<li class="mb-1">
+    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#language-collapse" aria-expanded="false">
+        Languages
+    </button>
+    <div class="collapse" id="language-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            @foreach (string item in Model)
+            {
+                <li>
+                    <a href="#"
+                       class="link-dark rounded">
+                        @item
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</li>
