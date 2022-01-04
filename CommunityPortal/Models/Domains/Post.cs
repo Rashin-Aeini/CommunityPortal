@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CommunityPortal.Models.Domains
 {
@@ -9,5 +10,6 @@ namespace CommunityPortal.Models.Domains
         public string Thumbnail { get; set; }
         public string Content { get; set; }
         public TimeSpan Created { get; set; }
+        public List<CategoryPost> Categories { get; set; }
     }
 }
