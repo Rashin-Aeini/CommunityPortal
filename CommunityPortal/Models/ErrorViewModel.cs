@@ -1,5 +1,3 @@
-using System;
-
 namespace CommunityPortal.Models
 {
     public class ErrorViewModel
