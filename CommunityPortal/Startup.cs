@@ -33,9 +33,25 @@ namespace CommunityPortal
                 .AddEntityFrameworkStores<PortalContext>()
                 .AddDefaultTokenProviders();
 
+            #region PostServiceAndPostRepository
+            
             services.AddScoped<IRepository<Post>, PostRepository>();
 
+            services.AddScoped<PostRepository>();
+
             services.AddScoped<IService<Post, CreatePostViewModel>, PostService>();
+
+            services.AddScoped<PostService>();
+
+            #endregion
+
+            #region CategoryServiceAndCategoryRepository
+            
+            services.AddScoped<IRepository<Category>, CategoryRepository>();
+
+            services.AddScoped<CategoryRepository>();
+
+            #endregion
 
             services.AddControllersWithViews();
         }
