@@ -1,4 +1,5 @@
 using CommunityPortal.Areas.Admin.Models.Services;
+using CommunityPortal.Areas.Admin.Models.ViewModels.Category;
 using CommunityPortal.Areas.Admin.Models.ViewModels.Post;
 using CommunityPortal.Models.Data;
 using CommunityPortal.Models.Domains;
@@ -50,6 +51,10 @@ namespace CommunityPortal
             services.AddScoped<IRepository<Category>, CategoryRepository>();
 
             services.AddScoped<CategoryRepository>();
+
+            services.AddScoped<IService<Category, CreateCategoryViewModel>, CategoryService>();
+
+            services.AddScoped<CategoryService>();
 
             #endregion
 
