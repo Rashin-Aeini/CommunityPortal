@@ -12,11 +12,13 @@ namespace CommunityPortal.Areas.Admin.Controllers
     [Area("Admin")]
     public class PostController : Controller
     {
-        private IService<Post, CreatePostViewModel> Service { get; }
+        private PostService Service { get; }
+        private CategoryService CategoryService { get; }
 
-        public PostController(IService<Post, CreatePostViewModel> service)
+        public PostController(PostService service, CategoryService categoryService)
         {
             Service = service;
+            CategoryService = categoryService;
         }
 
         public IActionResult Index(FilterPostViewModel entry)
@@ -86,17 +88,19 @@ namespace CommunityPortal.Areas.Admin.Controllers
             return View(entry);
         }
 
-        public IActionResult New()
+        public IActionResult Create()
         {
-            return View();
+            ViewData["Categories"] = CategoryService.GetAll();
+            return View(new CreatePostViewModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult New(CreatePostViewModel entry)
+        public IActionResult Create(CreatePostViewModel entry)
         {
             if (!ModelState.IsValid)
             {
+                ViewData["Categories"] = CategoryService.GetAll();
                 return View(entry);
             }
 

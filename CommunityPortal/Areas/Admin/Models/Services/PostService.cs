@@ -6,7 +6,7 @@ using CommunityPortal.Models.Repositories;
 
 namespace CommunityPortal.Areas.Admin.Models.Services
 {
-    public class PostService : IService<Post, CreatePostViewModel>
+    public class PostService : IPostService
     {
         private IRepository<Post> Repository { get; }
 
@@ -56,6 +56,16 @@ namespace CommunityPortal.Areas.Admin.Models.Services
         {
             Post item = GetById(id);
             return item != null && Repository.Delete(item);
+        }
+
+        public bool TrackCategory(int post, int category)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool SubTrackCategory(int post, int category)
+        {
+            throw new NotImplementedException();
         }
     }
 }

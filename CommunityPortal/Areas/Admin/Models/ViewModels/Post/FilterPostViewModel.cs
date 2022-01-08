@@ -10,6 +10,8 @@ namespace CommunityPortal.Areas.Admin.Models.ViewModels.Post
 
         }
 
+        #region Question
+        
         public string Search { get; set; }
 
         public string Sort { get; set; }
@@ -18,6 +20,12 @@ namespace CommunityPortal.Areas.Admin.Models.ViewModels.Post
         public int Pages { get; set; }
         public int Page { get; set; }
 
+        #endregion
+
+        #region Answer
+        
         public List<IndexPostViewModel> Result { get; }
+
+        #endregion
     }
 }

@@ -27,11 +27,11 @@
                 <div class="position-sticky p-3">
                     <ul class="list-unstyled ps-0">
                         <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
                                 <i class="bi bi-pin-fill"></i>
                                 Dashboard
                             </button>
-                            <div class="collapse show" id="home-collapse">
+                            <div class="collapse" id="home-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <li>
                                         <a
@@ -46,10 +46,10 @@
                             </div>
                         </li>
                         <li class="mb-1">
-                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#post-collapse" aria-expanded="false">
                                 Post
                             </button>
-                            <div class="collapse" id="dashboard-collapse">
+                            <div class="collapse" id="post-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <li>
                                         <a
@@ -63,7 +63,7 @@
                                     <li>
                                         <a asp-area="Admin"
                                            asp-controller="Post"
-                                           asp-action="New" 
+                                           asp-action="Create" 
                                            class="link-dark rounded">
                                             Add new
                                         </a>
