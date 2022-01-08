@@ -2,12 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <ClientApp>wwwroot\js\</ClientApp>
   </PropertyGroup>
-
-  <Target Name="ExecuteWebpack" BeforeTargets="Build">
-    <Exec WorkingDirectory="$(ClientApp)" Command="npm run build" />
-  </Target>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
