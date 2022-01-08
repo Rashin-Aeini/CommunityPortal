@@ -1,0 +1,23 @@
+﻿@model CreateCategoryViewModel
+
+
+@{
+    ViewData["Title"] = "Create new category";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Create new category</h1>
+</div>
+
+<form asp-area="Admin"
+      asp-controller="Category"
+      asp-action="Create"
+      asp-antiforgery="true"
+      method="post">
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input class="form-control" asp-for="Title">
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FilterCategoryViewModel
+
+@{
     ViewData["Title"] = "Show all categories";
 }
 
@@ -6,10 +8,86 @@
     <h1 class="h2">Show all posts</h1>
 </div>
 
-<div id="root"></div>
+@await Component.InvokeAsync("Message")
 
-@section Scripts
-{
-    <script src="~/js/category.js"></script>
-}
+<a asp-area="Admin"
+   asp-controller="Category"
+   asp-action="Create"
+   class="btn btn-link">
+    Add new category
+</a>
 
+<div class="d-flex flex-column mb-2">
+    <form asp-area="Admin" asp-controller="Category" asp-action="Index"
+          method="get" class="ms-auto">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label asp-for="Search" class="col-form-label"></label>
+            </div>
+            <div class="col-auto">
+                <input asp-for="Search" class="form-control" />
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Result.Count != 0)
+            {
+                foreach (IndexCategoryViewModel item in Model.Result)
+                {
+                    <tr>
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.Title
+                        </td>
+                        <td>
+                            <a class="btn btn-link text-info"
+                               asp-area="Admin"
+                               asp-controller="Category"
+                               asp-action="Edit"
+                               asp-route-Id="@item.Id">
+                                Edit
+                            </a>
+                            <a class="btn btn-link text-danger"
+                               asp-area="Admin"
+                               asp-controller="Category"
+                               asp-action="Delete"
+                               asp-route-Id="@item.Id">
+                                Remove
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3">
+                        There is nothing for showing
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
