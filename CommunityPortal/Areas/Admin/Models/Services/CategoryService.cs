@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CommunityPortal.Areas.Admin.Models.ViewModels.Category;
 using CommunityPortal.Models.Domains;
 using CommunityPortal.Models.Repositories;
@@ -47,8 +48,15 @@ namespace CommunityPortal.Areas.Admin.Models.Services
 
         public bool Remove(int id)
         {
-            Category item = GetById(id);
-            return item != null && Repository.Delete(item);
+            Category entry = GetById(id);
+
+            if (entry != null && entry.Posts.Any())
+            {
+                entry.Posts.Clear();
+                Repository.Update(entry);
+            }
+
+            return entry != null && Repository.Delete(entry);
         }
     }
 }
