@@ -110,5 +110,65 @@ namespace CommunityPortal.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+
+        public IActionResult Edit(int id)
+        {
+            Post entry = Service.GetById(id);
+
+            if (entry == null)
+            {
+                TempData.Message("rashin", "Sorry, there is a problem happened");
+                return RedirectToAction(nameof(Index));
+            }
+
+            ViewData["Categories"] = CategoryService.GetAll();
+            ViewBag.Id = id;
+
+            CreatePostViewModel model = new CreatePostViewModel()
+            {
+                Title = entry.Title,
+                Thumbnail = entry.Thumbnail,
+                Content = entry.Content,
+                Created = entry.Created,
+                Categories = entry.Categories
+                    .Select(item => item.CategoryId)
+                    .ToList()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, CreatePostViewModel entry)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewData["Categories"] = CategoryService.GetAll();
+                ViewBag.Id = id;
+
+                return View(entry);
+            }
+
+            TempData.Message("rashin",
+                Service.Edit(id, entry) ? 
+                    "Your post updated successfully" : 
+                    "Sorry, there is a problem happened"
+                );
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(int id)
+        {
+            TempData.Message("rashin",
+                Service.Remove(id) ?
+                    "Your post deleted successfully" :
+                    "Sorry, there is a problem happened"
+            );
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
