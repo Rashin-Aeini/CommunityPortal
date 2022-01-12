@@ -2,6 +2,7 @@
 using System.Linq;
 using CommunityPortal.Models.Data;
 using CommunityPortal.Models.Domains;
+using Microsoft.EntityFrameworkCore;
 
 namespace CommunityPortal.Models.Repositories
 {
@@ -16,7 +17,9 @@ namespace CommunityPortal.Models.Repositories
 
         public List<Post> Read()
         {
-            return Context.Posts.ToList();
+            return Context.Posts
+                .Include(item => item.Categories)
+                .ToList();
         }
 
         public Post Read(int id)
